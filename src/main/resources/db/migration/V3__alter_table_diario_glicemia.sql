@@ -1,0 +1,1 @@
+ALTER TABLE diario_glicemia ALTER COLUMN momento TYPE DATE USING momento::DATE

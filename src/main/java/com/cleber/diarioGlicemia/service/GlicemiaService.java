@@ -1,0 +1,64 @@
+package com.cleber.diarioGlicemia.service;
+
+import com.cleber.diarioGlicemia.entity.GlicemiaDiaria;
+import com.cleber.diarioGlicemia.entity.User;
+import com.cleber.diarioGlicemia.repository.GlicemiaRepository;
+import com.cleber.diarioGlicemia.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
+import java.util.List;
+
+@Service
+@RequiredArgsConstructor
+public class GlicemiaService {
+
+    private final GlicemiaRepository repository;
+    private final UserRepository userRepository;
+
+    //Cria ou atualiza a linha com no periodo selecionado
+    public GlicemiaDiaria createOrSave(Long usuarioId, String tipo, Double valor) {
+        User usuario = userRepository.findById(usuarioId).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+
+        LocalDate hoje = LocalDate.now();
+
+        // verifica se ja existe uma linha para hoje
+        GlicemiaDiaria registro = repository.findByDataAndUser(hoje, userRepository.getReferenceById(usuarioId))
+                .orElse(new GlicemiaDiaria(hoje));
+
+        registro.setUser(usuario);
+        registro.setData(hoje);
+
+        switch (tipo.toLowerCase()) {
+            case "jejum":
+                registro.setJejum(valor);
+                break;
+            case "pos_cafe":
+                registro.setPosCafe(valor);
+                break;
+            case "antes_almoco":
+                registro.setAntesAlmoco(valor);
+                break;
+            case "pos_almoco":
+                registro.setPosAlmoco(valor);
+                break;
+            case "antes_jantar":
+                registro.setAntesJantar(valor);
+                break;
+            case "pos_jantar" :
+                registro.setPosJantar(valor);
+                break;
+            default: throw new IllegalArgumentException("Tipo periodo inválido");
+        }
+        return repository.save(registro);
+    }
+
+    public List<GlicemiaDiaria> findAll() {
+        return repository.findAll();
+    }
+
+    public void delete(Long id) {
+        repository.deleteById(id);
+    }
+}
