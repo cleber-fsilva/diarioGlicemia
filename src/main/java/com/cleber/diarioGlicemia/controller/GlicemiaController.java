@@ -1,9 +1,17 @@
 package com.cleber.diarioGlicemia.controller;
 
 import com.cleber.diarioGlicemia.controller.request.GlicemiaRequest;
+import com.cleber.diarioGlicemia.controller.request.UserRequest;
+import com.cleber.diarioGlicemia.controller.response.GlicemiaResponse;
+import com.cleber.diarioGlicemia.controller.response.UserResponse;
 import com.cleber.diarioGlicemia.entity.GlicemiaDiaria;
+import com.cleber.diarioGlicemia.entity.User;
+import com.cleber.diarioGlicemia.mapper.GlicemiaMapper;
+import com.cleber.diarioGlicemia.mapper.Usermapper;
 import com.cleber.diarioGlicemia.service.GlicemiaService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,21 +20,30 @@ import java.util.List;
 @RestController
 @RequestMapping("/diarioGlicemia/medicao")
 public class GlicemiaController {
-//TODO colocar as ResponseEntity
+
     private final GlicemiaService service;
 
     @PostMapping()
-    public GlicemiaDiaria atualizar(@RequestBody GlicemiaRequest request) {
-        return service.createOrSave(request.usuarioId(), request.tipo(), request.valor());
+    public ResponseEntity<GlicemiaRequest> criarOuAtualizar(@RequestBody GlicemiaRequest request) {
+        service.createOrSave(request.usuarioId(), request.tipo(), request.valor());
+        return ResponseEntity.status(HttpStatus.CREATED).body(request);
     }
 
     @GetMapping
-    public List<GlicemiaDiaria> findAll() {
-        return service.findAll();
+    public ResponseEntity<List<GlicemiaResponse>> findAll() {
+        List<GlicemiaResponse> glicemias = service.findAll()
+                .stream()
+                .map(glicemia -> GlicemiaMapper.toGlicemiaResponse(glicemia))
+                .toList();
+
+
+        return ResponseEntity.ok(glicemias);
     }
 
+
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
         service.delete(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }

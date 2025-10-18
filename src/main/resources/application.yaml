@@ -16,3 +16,6 @@ spring:
   flyway:
     enabled: true
 
+diarioGlicemia:
+  security:
+    secret: "palavra-secreta"
