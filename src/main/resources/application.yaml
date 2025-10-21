@@ -3,8 +3,7 @@ spring:
   name: diarioGlicemia
 
   datasource:
-    url: jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE}
-    #    docker run --name database -p 2222:5432 -e POSTGRES_PASSWORD=postgres -d postgres
+    url: jdbc:postgresql://${PGHOST}:5432/${PGDATABASE}
     username: ${PGUSER}
     password: ${PGPASSWORD}
     driver-class-name: org.postgresql.Driver
