@@ -2,10 +2,13 @@ package com.cleber.diarioGlicemia.controller.response;
 
 import lombok.Builder;
 
+import java.time.LocalDate;
+
 @Builder
 public record GlicemiaResponse(Long id,
+                               LocalDate data,
                                Double jejum,
-                               Double pos_cafe,
+                               Double posCafe,
                                Double antesAlmoco,
                                Double posAlmoco,
                                Double antesJantar,

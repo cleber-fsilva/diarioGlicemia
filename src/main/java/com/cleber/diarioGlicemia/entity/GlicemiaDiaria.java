@@ -1,5 +1,6 @@
 package com.cleber.diarioGlicemia.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -13,6 +14,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "diario_glicemia",
 uniqueConstraints = @UniqueConstraint(columnNames = "momento"))
+//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class GlicemiaDiaria {
 
     @Id
@@ -41,6 +43,7 @@ public class GlicemiaDiaria {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_id", nullable = false)
+    //@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private User user;
 
     public GlicemiaDiaria(LocalDate hoje) {

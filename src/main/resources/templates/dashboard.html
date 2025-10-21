@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard • Diário Glicemia</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+</head>
+<body>
+<main class="container">
+    <div class="card">
+        <h1 class="title">Dashboard</h1>
+        <p class="message" id="welcomeMsg"></p>
+
+        <div class="buttons">
+            <button id="btnCadastro" class="btn btn-primary">Cadastrar Medição</button>
+            <button id="btnHistorico" class="btn btn-primary">Histórico</button>
+            <button id="btnLogout" class="btn btn-secondary">Logout</button>
+        </div>
+
+        <!-- Formulário para cadastrar uma medição -->
+        <div id="divMedicao" class="medicao-form hidden">
+            <h3>Nova Medição</h3>
+            <form id="formMedicao">
+                <label for="tipoMedicao">Selecione o tipo:</label>
+                <select id="tipoMedicao" name="tipoMedicao" required>
+                    <option value="">-- Escolha uma opção --</option>
+                    <option value="jejum">Jejum</option>
+                    <option value="pos_cafe">Pós Café</option>
+                    <option value="antes_almoco">Antes do Almoço</option>
+                    <option value="pos_almoco">Pós Almoço</option>
+                    <option value="antes_jantar">Antes do Jantar</option>
+                    <option value="pos_jantar">Pós Jantar</option>
+                </select>
+
+                <label for="valorMedicao">Valor (mg/dL):</label>
+                <input type="number" id="valorMedicao" name="valorMedicao" min="0" required>
+
+                <button type="submit" class="btn btn-primary">Salvar</button>
+            </form>
+        </div>
+
+        <!-- Histórico de medições -->
+        <div id="divHistorico" class="historico">
+            <h3>Histórico de Medições</h3>
+            <div id="historicoContent">
+                <p>Click no botão para carregar o histórico...</p>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script th:src="@{/js/dashboard.js}"></script>
+</body>
+</html>

@@ -24,7 +24,7 @@ public class GlicemiaMapper {
         return GlicemiaResponse.builder()
                 .id(glicemiaDiaria.getId())
                 .jejum(glicemiaDiaria.getJejum())
-                .pos_cafe(glicemiaDiaria.getPosCafe())
+                .posCafe(glicemiaDiaria.getPosCafe())
                 .antesAlmoco(glicemiaDiaria.getAntesAlmoco())
                 .posAlmoco(glicemiaDiaria.getPosAlmoco())
                 .antesJantar(glicemiaDiaria.getAntesJantar())

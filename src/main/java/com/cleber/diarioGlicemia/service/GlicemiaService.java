@@ -1,5 +1,6 @@
 package com.cleber.diarioGlicemia.service;
 
+import com.cleber.diarioGlicemia.controller.response.GlicemiaResponse;
 import com.cleber.diarioGlicemia.entity.GlicemiaDiaria;
 import com.cleber.diarioGlicemia.entity.User;
 import com.cleber.diarioGlicemia.repository.GlicemiaRepository;
@@ -56,6 +57,10 @@ public class GlicemiaService {
 
     public List<GlicemiaDiaria> findAll() {
         return repository.findAll();
+    }
+
+    public List<GlicemiaResponse> findByUserId(Long usuarioId) {
+        return repository.findByUser_Id(usuarioId);
     }
 
     public void delete(Long id) {

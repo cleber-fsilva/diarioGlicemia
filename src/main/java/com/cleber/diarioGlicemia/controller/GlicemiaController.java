@@ -1,13 +1,9 @@
 package com.cleber.diarioGlicemia.controller;
 
 import com.cleber.diarioGlicemia.controller.request.GlicemiaRequest;
-import com.cleber.diarioGlicemia.controller.request.UserRequest;
 import com.cleber.diarioGlicemia.controller.response.GlicemiaResponse;
-import com.cleber.diarioGlicemia.controller.response.UserResponse;
 import com.cleber.diarioGlicemia.entity.GlicemiaDiaria;
-import com.cleber.diarioGlicemia.entity.User;
 import com.cleber.diarioGlicemia.mapper.GlicemiaMapper;
-import com.cleber.diarioGlicemia.mapper.Usermapper;
 import com.cleber.diarioGlicemia.service.GlicemiaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -38,6 +34,11 @@ public class GlicemiaController {
 
 
         return ResponseEntity.ok(glicemias);
+    }
+
+    @GetMapping("/user/{usuarioId}")
+    public List<GlicemiaResponse> getMedicoesPorUsuario(@PathVariable Long usuarioId) {
+        return service.findByUserId(usuarioId);
     }
 
 

@@ -31,6 +31,8 @@ public class SecurityConfig {
                         .dispatcherTypeMatchers(DispatcherType.ERROR).permitAll()
                         .requestMatchers(HttpMethod.POST, "/diarioGlicemia/user/register").permitAll()
                         .requestMatchers(HttpMethod.POST, "/diarioGlicemia/user/login").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/", "/index", "/register", "/register.html", "/css/**", "/js/**").permitAll()
+                        .requestMatchers("/dashboard.html").permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)

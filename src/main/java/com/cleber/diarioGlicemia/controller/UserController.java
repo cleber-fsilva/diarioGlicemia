@@ -28,6 +28,7 @@ public class UserController {
     private final UserService userService;
     private final AuthenticationManager authenticationManager;
     private final TokenService tokenService;
+
     @GetMapping
     public ResponseEntity<List<UserResponse>> findAll() {
         List<UserResponse> users = userService.findAll()
@@ -61,8 +62,9 @@ public class UserController {
             User user = (User) authenticated.getPrincipal();
 
             String token = tokenService.generateToken(user);
+            //String nome = user.getName();
 
-            return ResponseEntity.ok(new LoginResponse(token));
+            return ResponseEntity.ok(new LoginResponse(token, user.getName(), user.getId()));
 
         } catch (BadCredentialsException e) {
             throw new UserNameOuPasswordInvalidException("Usuário ou senha Inválido.");
