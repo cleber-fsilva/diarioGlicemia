@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         try {
-            const response = await fetch("http://localhost:8080/diarioGlicemia/medicao", {
+            const response = await fetch("https://diarioglicemia-production.up.railway.app/diarioGlicemia/medicao", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -75,7 +75,7 @@ const btnCadastro = document.getElementById('btnCadastro');
     const btnHistorico = document.getElementById('btnHistorico');
     const divMedicao = document.getElementById('divMedicao');
     const divHistorico = document.getElementById('divHistorico');
-    const API_URL = "http://localhost:8080/diarioGlicemia/medicao";
+    const API_URL = "https://diarioglicemia-production.up.railway.app/diarioGlicemia/medicao";
 
     // Alternar entre telas
     btnCadastro.addEventListener('click', () => {

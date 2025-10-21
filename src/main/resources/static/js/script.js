@@ -2,7 +2,7 @@
 // Faz POST para /glicemiaDiaria/user/login e salva token no localStorage.
 // Redireciona para dashboard.html em caso de sucesso.
 
-const API_BASE = "http://localhost:8080"; // base da API
+const API_BASE = "https://diarioglicemia-production.up.railway.app"; // base da API
 const LOGIN_URL = `${API_BASE}/diarioGlicemia/user/login`;
 
 document.addEventListener("DOMContentLoaded", () => {
