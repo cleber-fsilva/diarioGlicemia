@@ -125,8 +125,6 @@ const btnCadastro = document.getElementById('btnCadastro');
     // Exibir tabela completa com todas as medições do dia
     function exibirHistorico(historico) {
 
-        console.log("Dados recebidos para ordenação:", historico);
-
         const container = document.getElementById('historicoContent');
 
         if (!historico || historico.length === 0) {
@@ -144,11 +142,11 @@ const btnCadastro = document.getElementById('btnCadastro');
 
                 // Se B (mais recente) for maior que A (mais antigo), B vem primeiro (-1)
                 if (dataB > dataA) {
-                    return -1;
+                    return 1;
                 }
                 // Se B (mais recente) for menor que A (mais antigo), B vem depois (1)
                 if (dataB < dataA) {
-                    return 1;
+                    return -1;
                 }
                 // Se forem iguais
                 return 0;
