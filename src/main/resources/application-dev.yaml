@@ -1,0 +1,20 @@
+spring:
+  application:
+  name: diarioGlicemia
+
+  datasource:
+    url: jdbc:postgresql://localhost:2222/diario_glicemia
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+
+  flyway:
+    enabled: true
+
+diarioGlicemia:
+  security:
+    secret: "palavra-secreta"

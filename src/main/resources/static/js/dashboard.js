@@ -166,9 +166,13 @@ const btnCadastro = document.getElementById('btnCadastro');
         `;
 
         historicoOrdenado.forEach(item => {
+            // Converte a data para dd/mm/aaaa
+            const dataIso = item.data;
+            const dataFormatada = dataIso.split('-').reverse().join('-');
+
             html += `
                 <tr>
-                    <td>${item.data}</td>
+                    <td>${dataFormatada}</td>
                     <td>${item.jejum ?? '-'}</td>
                     <td>${item.posCafe ?? '-'}</td>
                     <td>${item.antesAlmoco ?? '-'}</td>
