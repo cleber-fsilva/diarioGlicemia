@@ -124,6 +124,9 @@ const btnCadastro = document.getElementById('btnCadastro');
 
     // Exibir tabela completa com todas as medições do dia
     function exibirHistorico(historico) {
+
+        console.log("Dados recebidos para ordenação:", historico);
+
         const container = document.getElementById('historicoContent');
 
         if (!historico || historico.length === 0) {
@@ -136,13 +139,20 @@ const btnCadastro = document.getElementById('btnCadastro');
 
         // ORDENAR O ARRAY POR DATA
         historicoOrdenado.sort((a, b) => {
-            // Converte as strings YYYY-MM-DD para o formato AAAA/MM/DD para garantir
-            // a compatibilidade com new Date() e evitar problemas de fuso horário.
-            const dataA = new Date(a.data.replace(/-/g, '/'));
-            const dataB = new Date(b.data.replace(/-/g, '/'));
+                const dataA = a.data;
+                const dataB = b.data;
 
-            return dataB.getTime() - dataA.getTime();
-        });
+                // Se B (mais recente) for maior que A (mais antigo), B vem primeiro (-1)
+                if (dataB > dataA) {
+                    return -1;
+                }
+                // Se B (mais recente) for menor que A (mais antigo), B vem depois (1)
+                if (dataB < dataA) {
+                    return 1;
+                }
+                // Se forem iguais
+                return 0;
+            });
 
         let html = `
             <table>
