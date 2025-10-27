@@ -136,9 +136,10 @@ const btnCadastro = document.getElementById('btnCadastro');
 
         // ORDENAR O ARRAY POR DATA
         historicoOrdenado.sort((a, b) => {
-            if (a.data > b.data) return -1;
-            if (a.data < b.data) return 1;
-            return 0;
+            const dateA = new Date(a.data);
+            const dateB = new Date(b.data);
+
+            return dateB - dateA;
         });
 
         let html = `
