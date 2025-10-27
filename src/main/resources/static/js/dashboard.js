@@ -136,10 +136,12 @@ const btnCadastro = document.getElementById('btnCadastro');
 
         // ORDENAR O ARRAY POR DATA
         historicoOrdenado.sort((a, b) => {
-            const dateA = new Date(a.data);
-            const dateB = new Date(b.data);
+            // Converte as strings YYYY-MM-DD para o formato AAAA/MM/DD para garantir
+            // a compatibilidade com new Date() e evitar problemas de fuso horário.
+            const dataA = new Date(a.data.replace(/-/g, '/'));
+            const dataB = new Date(b.data.replace(/-/g, '/'));
 
-            return dateB - dateA;
+            return dataB.getTime() - dataA.getTime();
         });
 
         let html = `
