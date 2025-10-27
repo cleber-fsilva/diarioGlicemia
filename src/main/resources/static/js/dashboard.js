@@ -167,7 +167,7 @@ const btnCadastro = document.getElementById('btnCadastro');
                 </tr>
         `;
 
-        historico.forEach(item => {
+        historicoOrdenado.forEach(item => {
             html += `
                 <tr>
                     <td>${item.data}</td>
