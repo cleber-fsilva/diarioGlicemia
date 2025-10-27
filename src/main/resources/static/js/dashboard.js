@@ -131,6 +131,16 @@ const btnCadastro = document.getElementById('btnCadastro');
             return;
         }
 
+        // Clonar o array para evitar modificar o original
+        const historicoOrdenado = [...historico];
+
+        // ORDENAR O ARRAY POR DATA
+        historicoOrdenado.sort((a, b) => {
+            if (a.data > b.data) return -1;
+            if (a.data < b.data) return 1;
+            return 0;
+        });
+
         let html = `
             <table>
                 <tr>
