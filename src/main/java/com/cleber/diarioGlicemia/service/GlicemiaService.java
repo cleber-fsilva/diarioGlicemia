@@ -19,17 +19,17 @@ public class GlicemiaService {
     private final UserRepository userRepository;
 
     //Cria ou atualiza a linha com no periodo selecionado
-    public GlicemiaDiaria createOrSave(Long usuarioId, String tipo, Double valor) {
+    public GlicemiaDiaria createOrSave(Long usuarioId, LocalDate dataMedicao, String tipo, Double valor) {
         User usuario = userRepository.findById(usuarioId).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
-        LocalDate hoje = LocalDate.now();
+        //LocalDate hoje = LocalDate.now();
 
         // verifica se ja existe uma linha para hoje
-        GlicemiaDiaria registro = repository.findByDataAndUser(hoje, userRepository.getReferenceById(usuarioId))
-                .orElse(new GlicemiaDiaria(hoje));
+        GlicemiaDiaria registro = repository.findByDataAndUser(dataMedicao, userRepository.getReferenceById(usuarioId))
+                .orElse(new GlicemiaDiaria(dataMedicao));
 
         registro.setUser(usuario);
-        registro.setData(hoje);
+        registro.setData(dataMedicao);
 
         switch (tipo.toLowerCase()) {
             case "jejum":

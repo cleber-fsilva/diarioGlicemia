@@ -21,7 +21,7 @@ public class GlicemiaController {
 
     @PostMapping()
     public ResponseEntity<GlicemiaRequest> criarOuAtualizar(@RequestBody GlicemiaRequest request) {
-        service.createOrSave(request.usuarioId(), request.tipo(), request.valor());
+        service.createOrSave(request.usuarioId(), request.data(), request.tipo(), request.valor());
         return ResponseEntity.status(HttpStatus.CREATED).body(request);
     }
 
