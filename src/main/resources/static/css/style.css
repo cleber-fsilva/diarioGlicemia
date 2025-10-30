@@ -84,10 +84,6 @@ h3 {
     width: 100%;
     border-collapse: collapse;
     margin-top: 15px;
-
-    overflow-x: auto;
-    display: block;
-    white-space: nowrap;
   }
 
   th, td {
@@ -95,9 +91,12 @@ h3 {
       padding: 8px;
       text-align: center;
 
-      white-space: nowrap;
-
+      word-break: break-word;
       min-width: 60px;
+  }
+
+  td {
+      white-space: nowrap;
   }
 
   .historico table th:first-child,
