@@ -181,7 +181,7 @@ const btnCadastro = document.getElementById('btnCadastro');
             let dataFormatada = '-';
 
             // Converte a data para dd/mm/aaaa
-            if (item.data) {}
+            if (item.data) {
                 const dataIso = item.data;
                 dataFormatada = dataIso.split('-').reverse().join('-');
             }
