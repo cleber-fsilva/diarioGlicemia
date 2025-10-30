@@ -5,6 +5,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const formMedicao = document.getElementById("formMedicao");
     const btnLogout = document.getElementById("btnLogout");
 
+    const dataMedicaoInput = document.getElementById("dataMedicao");
+    const tipoMedicaoInput = document.getElementById("tipoMedicao");
+    const valorMedicaoInput = document.getElementById("valorMedicao");
+
     if (!token) {
         window.location.href = "/";
         return;
@@ -13,23 +17,26 @@ document.addEventListener("DOMContentLoaded", () => {
     const userName = localStorage.getItem("name") || "usuário";
     welcomeMsg.textContent = `Olá, ${userName}!`;
 
+    dataMedicaoInput.value = new Date().toISOString().split('T')[0];
+
     // ---- Envio de medição ----
     formMedicao.addEventListener("submit", async (event) => {
         event.preventDefault();
 
-        const tipo = document.getElementById("tipoMedicao").value;
-        const valor = document.getElementById("valorMedicao").value;
+        const data = dataMedicaoInput.value;
+        const tipo = tipoMedicaoInput.value;
+        const valor = valorMedicaoInput.value;
 
-        if (!tipo || !valor) {
-            alert("Selecione o tipo e informe o valor da medição.");
+        if (!data || !tipo || !valor) {
+            alert("Preencha a data, o tipo e o valor da medição.");
             return;
         }
 
         // JSON no formato esperado pelo backend
         const medicao = {
-            usuarioId: Number(userId),
-            tipo: tipo,
-            valor: valor
+            data: data,
+            tipoMedicao: tipo,
+            valorMedicao: Number(valor)
         };
 
         try {
@@ -45,6 +52,11 @@ document.addEventListener("DOMContentLoaded", () => {
             if (response.ok) {
                 alert("Medição registrada com sucesso!");
                 formMedicao.reset();
+
+                dataMedicaoInput.value = new Date().toISOString().split('T')[0];
+
+                await carregarHistorico();
+
             } else if (response.status === 401) {
                 alert("Sessão expirada. Faça login novamente.");
                 localStorage.removeItem("token");
@@ -86,9 +98,8 @@ const btnCadastro = document.getElementById('btnCadastro');
     btnHistorico.addEventListener('click', async () => {
         //divHistorico.classList.toggle('hidden');
         divMedicao.classList.add('hidden');
-        if (!divHistorico.classList.contains('hidden')) {
-            await carregarHistorico();
-        }
+
+        await carregarHistorico();
     });
 
     // Função principal de carregamento do histórico

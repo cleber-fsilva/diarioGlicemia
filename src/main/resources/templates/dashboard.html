@@ -24,9 +24,12 @@
         <div id="divMedicao" class="medicao-form hidden">
             <h3>Nova Medição</h3>
             <form id="formMedicao">
+
+                <label for="dataMedicao">Data:</label>
+                <input type="date" id="dataMedicao" name="dataMedicao" required>
                 <label for="tipoMedicao">Selecione o tipo:</label>
                 <select id="tipoMedicao" name="tipoMedicao" required>
-                    <option value="">-- Escolha uma opção --</option>
+                    <option value=""> Escolha uma opção </option>
                     <option value="jejum">Jejum</option>
                     <option value="pos_cafe">Pós Café</option>
                     <option value="antes_almoco">Antes do Almoço</option>
