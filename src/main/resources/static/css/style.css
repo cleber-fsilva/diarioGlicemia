@@ -34,7 +34,7 @@ body{
 /* card */
 .card{
   width:100%;
-  max-width:600px;
+  max-width:800px;
   background:var(--card);
   border-radius:var(--radius);
   padding:28px;
@@ -80,6 +80,13 @@ h3 {
 /* Tabela de hisdtorico de medicao */
 .hidden { display: none; }
 
+#historicoContent {
+    overflow-x: auto;
+    width: 100%;
+
+    -webkit-overflow-scrolling: touch;
+}
+
   table {
     width: 100%;
     border-collapse: collapse;
@@ -91,12 +98,8 @@ h3 {
       padding: 8px;
       text-align: center;
 
-      word-break: break-word;
-      min-width: 60px;
-  }
-
-  td {
       white-space: nowrap;
+      min-width: 60px;
   }
 
   .historico table th:first-child,
@@ -140,6 +143,6 @@ h3 {
 
 /* responsive */
 @media (max-width:480px){
-  .card{padding:20px;margin:12px}
+  .card{padding:20px;margin:12px;max-width: 100%;}
   .title{font-size:20px}
 }
