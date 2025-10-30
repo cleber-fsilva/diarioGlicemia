@@ -178,9 +178,13 @@ const btnCadastro = document.getElementById('btnCadastro');
         `;
 
         historicoOrdenado.forEach(item => {
+            let dataFormatada = '-';
+
             // Converte a data para dd/mm/aaaa
-            const dataIso = item.data;
-            const dataFormatada = dataIso.split('-').reverse().join('-');
+            if (item.data) {}
+                const dataIso = item.data;
+                const dataFormatada = dataIso.split('-').reverse().join('-');
+            }
 
             html += `
                 <tr>
