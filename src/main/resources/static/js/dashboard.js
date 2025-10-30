@@ -183,7 +183,7 @@ const btnCadastro = document.getElementById('btnCadastro');
             // Converte a data para dd/mm/aaaa
             if (item.data) {}
                 const dataIso = item.data;
-                const dataFormatada = dataIso.split('-').reverse().join('-');
+                dataFormatada = dataIso.split('-').reverse().join('-');
             }
 
             html += `
