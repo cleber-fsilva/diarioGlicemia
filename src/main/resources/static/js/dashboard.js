@@ -35,8 +35,9 @@ document.addEventListener("DOMContentLoaded", () => {
         // JSON no formato esperado pelo backend
         const medicao = {
             data: data,
-            tipoMedicao: tipo,
-            valorMedicao: Number(valor)
+            tipo: tipo,
+            valor: Number(valor),
+            usuarioId: Number(userId)
         };
 
         try {
