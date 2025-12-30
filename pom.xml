@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.cleber</groupId>
-	<artifactId>demo</artifactId>
+	<artifactId>diarioGlicemia</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>diarioGlicemia</name>
+	<name>diario-glicemia</name>
 	<description>Projeto Spring Boot para marcação de glicemia</description>
 	<url/>
 	<licenses>
